@@ -40,7 +40,7 @@ export default function EndShift({ session, onNewGame, onLobby }) {
         <Gingham />
         <div className="p-6 text-center sm:p-8">
           <p className="text-5xl">🎉🧁</p>
-          <h1 className="mt-2 font-display text-5xl font-bold text-accent">Shift over!</h1>
+          <h1 className="mt-2 font-display text-5xl text-accent">Shift over!</h1>
           <p className="mt-1 text-muted">{report.shift_minutes}-minute shift</p>
 
           <ol className="mx-auto mt-6 max-w-xl space-y-3 text-left">
@@ -49,8 +49,8 @@ export default function EndShift({ session, onNewGame, onLobby }) {
                 <button type="button" onClick={() => setOpen(open === t.index ? null : t.index)}
                   className="w-full rounded-2xl border-2 border-line bg-panel p-4 text-left hover:bg-hover" style={{ borderLeft: `10px solid ${t.color}` }}>
                   <div className="flex items-center justify-between gap-3">
-                    <p className="font-display text-2xl font-bold">{medal[i] ?? `#${i + 1}`} {t.name}</p>
-                    <p className="font-display text-3xl font-bold text-accent">{t.score.points}</p>
+                    <p className="font-display text-2xl">{medal[i] ?? `#${i + 1}`} {t.name}</p>
+                    <p className="font-display text-3xl text-accent">{t.score.points}</p>
                   </div>
                   <div className="mt-1 flex flex-wrap items-center justify-between gap-2 text-sm text-muted">
                     <Stars n={t.score.stars} className="text-xl" />
@@ -85,7 +85,7 @@ function Orders({ team }) {
         return (
           <li key={o.order_no} className={`rounded-2xl border-2 p-3 text-sm ${r.bg}`}>
             <div className="flex items-start justify-between gap-2">
-              <p className="font-display text-base font-semibold">{o.emoji} #{o.order_no} {o.title} <span className="text-xs font-normal text-muted">({o.level})</span></p>
+              <p className="font-display text-base">{o.emoji} #{o.order_no} {o.title} <span className="text-xs font-normal text-muted">({o.level})</span></p>
               <p className={`shrink-0 font-bold ${r.color}`}>{r.emoji} {r.label}{o.points + o.tip > 0 ? ` +${o.points + o.tip}` : ''}</p>
             </div>
             <p className="mt-1">{o.ticket}</p>

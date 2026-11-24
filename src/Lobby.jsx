@@ -80,7 +80,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
 
       <header className="mx-auto mb-8 max-w-5xl text-center">
         <p className="font-display text-sm uppercase tracking-[0.3em] text-info">{SITE_NAME}</p>
-        <h1 className="mt-1 font-display text-5xl font-bold text-accent">🧁 Leader Lobby</h1>
+        <h1 className="mt-1 font-display text-5xl text-accent">🧁 Leader Lobby</h1>
         <p className="mt-2 text-muted">Set up your teams, pick the menus, then open the kitchen.</p>
         <p className="mt-2 text-sm font-bold"><a href={HUB_URL} className="text-info hover:brightness-110">← All games</a></p>
         <div className="mt-6">
@@ -101,10 +101,10 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
 
       <section className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
         <div className={card}>
-          <h2 className="font-display text-2xl font-bold text-accent">Join the kitchen</h2>
+          <h2 className="font-display text-2xl text-accent">Join the kitchen</h2>
           <p className="mt-3">
             Join code:{' '}
-            {session ? <span className="font-display text-3xl font-bold tracking-widest text-info">{session.joinCode}</span> : <span className="text-muted">Not created yet</span>}
+            {session ? <span className="font-display text-3xl tracking-widest text-info">{session.joinCode}</span> : <span className="text-muted">Not created yet</span>}
           </p>
           {session && (
             <div className="mt-5 flex flex-col items-center">
@@ -125,14 +125,14 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
         </div>
 
         <div className={card}>
-          <h2 className="font-display text-2xl font-bold text-accent">Teams</h2>
+          <h2 className="font-display text-2xl text-accent">Teams</h2>
           <div className="mt-4 space-y-3">
             {teamNames.map((name, i) => (
               // A team is a little bakery counter: an apron color and the team's name
               <div key={i} className="flex items-center gap-3 overflow-hidden rounded-2xl border-2 border-line bg-panel">
                 <span className="self-stretch px-3 py-3 text-2xl" style={{ background: TEAM_COLORS[i] }} aria-hidden="true">👩‍🍳</span>
                 <input
-                  className="min-w-0 flex-1 bg-transparent py-2 font-display text-xl font-semibold outline-none disabled:opacity-100"
+                  className="min-w-0 flex-1 bg-transparent py-2 font-display text-xl outline-none disabled:opacity-100"
                   value={name} maxLength={40} disabled={finalized} aria-label={`Name for team ${i + 1}`}
                   onChange={(e) => setTeamNames(teamNames.map((n, k) => (k === i ? e.target.value : n)))}
                 />
@@ -194,7 +194,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
 
         <div className={`${card} md:col-span-2`}>
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="font-display text-2xl font-bold text-accent">Students waiting</h2>
+            <h2 className="font-display text-2xl text-accent">Students waiting</h2>
             <Button variant="outline" className="!px-4 !py-2 text-sm" disabled={!finalized || waiting.length === 0 || busy}
               title="Approves every waiting student and splits them evenly between the teams" onClick={() => studentAction({ action: 'assign_random' })}>
               🎲 Randomly assign teams ({waiting.length})
@@ -234,7 +234,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
                   <div key={i} className="overflow-hidden rounded-2xl border-2 border-line bg-panel">
                     <div className="h-2" style={{ background: TEAM_COLORS[i] }} />
                     <div className="p-3">
-                      <p className="font-display text-lg font-semibold">{teamLabel(i)}</p>
+                      <p className="font-display text-lg">{teamLabel(i)}</p>
                       <ul className="mt-1 space-y-1 text-sm">
                         {members.map((p) => (
                           <li key={p.id} className="flex items-center justify-between gap-2">

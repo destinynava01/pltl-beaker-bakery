@@ -66,17 +66,17 @@ export default function Kitchen({ session, onLobby, onNewGame }) {
 
   return (
     <main className="bakery-bg min-h-dvh text-ink">
-      <header className="bg-accent text-white">
+      <header className="bg-ink text-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <div>
             <p className="font-display text-xs uppercase tracking-[0.3em] opacity-90">{SITE_NAME} · join code {session.joinCode}</p>
-            <h1 className="font-display text-3xl font-bold">🧁 Kitchen&apos;s open! <span className="text-lg font-semibold opacity-90">{menus.map((m) => `${m.emoji} ${m.label}`).join(' · ')}</span></h1>
+            <h1 className="font-display text-3xl text-[#f3b27a]">🧁 Kitchen&apos;s open! <span className="text-lg font-semibold opacity-90">{menus.map((m) => `${m.emoji} ${m.label}`).join(' · ')}</span></h1>
           </div>
           <div className="flex items-center gap-3">
             {shiftLeft !== null && (
               <div className={`rounded-2xl bg-white px-4 py-1 text-center text-ink ${shiftLeft <= 30 ? 'wobble' : ''}`} key={shiftLeft <= 30 ? Math.ceil(shiftLeft) : 'shift'}>
                 <p className="font-display text-[10px] uppercase tracking-widest text-muted">Shift ends in</p>
-                <p className={`font-display text-3xl font-bold tabular-nums ${shiftLeft <= 60 ? 'text-bad' : ''}`}>{clock(shiftLeft)}</p>
+                <p className={`font-display text-3xl tabular-nums ${shiftLeft <= 60 ? 'text-bad' : ''}`}>{clock(shiftLeft)}</p>
               </div>
             )}
             {kitchen.waiting > 0 && <Button variant="mint" className="!px-3 !py-2 text-sm" onClick={onLobby}>{kitchen.waiting} waiting</Button>}
@@ -106,11 +106,11 @@ function Counter({ team, serverNow, busy, onPass }) {
     <article className="soft-shadow overflow-hidden rounded-3xl border-2 border-line bg-card">
       <div className="flex items-center justify-between gap-2 px-4 py-3" style={{ background: `${team.color}22`, borderBottom: `4px solid ${team.color}` }}>
         <div className="min-w-0">
-          <h2 className="truncate font-display text-2xl font-bold">{team.name}</h2>
+          <h2 className="truncate font-display text-2xl">{team.name}</h2>
           <p className="truncate text-xs text-muted">{team.members.join(', ')}</p>
         </div>
         <div className="text-right">
-          <p className="font-display text-3xl font-bold text-accent">{team.score.points}</p>
+          <p className="font-display text-3xl text-accent">{team.score.points}</p>
           <Stars n={team.score.stars} className="text-lg" />
         </div>
       </div>
@@ -119,7 +119,7 @@ function Counter({ team, serverNow, busy, onPass }) {
         {o ? (
           <div className="ticket rounded-2xl p-4">
             <div className="flex items-start justify-between gap-2">
-              <p className="font-display text-xl font-semibold"><span className="mr-1 text-2xl">{o.emoji}</span>{o.title}</p>
+              <p className="font-display text-xl"><span className="mr-1 text-2xl">{o.emoji}</span>{o.title}</p>
               <span className="rounded-full bg-accent-soft px-2 py-0.5 font-display text-xs uppercase text-accent">#{o.order_no} · {o.level}</span>
             </div>
             <p className="mt-2 leading-snug">{o.ticket}</p>
@@ -129,7 +129,7 @@ function Counter({ team, serverNow, busy, onPass }) {
             </div>
             <div className="mt-2 flex items-center justify-between text-sm">
               <span>👩‍🍳 <b>{o.cook ?? 'No cook'}</b> is cooking{o.tries > 0 ? ` · ${3 - o.tries} tr${3 - o.tries === 1 ? 'y' : 'ies'} left` : ''}</span>
-              <span className={`font-display font-bold tabular-nums ${left < 15 ? 'text-bad' : 'text-muted'}`}>{clock(left)}</span>
+              <span className={`font-display tabular-nums ${left < 15 ? 'text-bad' : 'text-muted'}`}>{clock(left)}</span>
             </div>
             <button type="button" disabled={busy} onClick={onPass} className="mt-1 text-xs font-bold text-info hover:underline">Cook not here? Pass the whisk →</button>
           </div>

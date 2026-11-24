@@ -1,4 +1,4 @@
-// Shared building blocks with the bakery look (cream, strawberry frosting, mint icing, chocolate text)
+// Shared building blocks with the bakery look (flour-white, caramel, teal, espresso, navy chef's check)
 
 export function Gingham({ className = 'h-3' }) {
   return <div aria-hidden="true" className={`gingham ${className}`} />
@@ -10,7 +10,7 @@ export function CenterCard({ title, children }) {
       <div className="soft-shadow w-full max-w-md overflow-hidden rounded-3xl border-2 border-line bg-card text-center">
         <Gingham />
         <div className="p-8">
-          <h1 className="font-display text-4xl font-bold text-accent">{title}</h1>
+          <h1 className="font-display text-4xl text-accent">{title}</h1>
           {children}
         </div>
       </div>
@@ -19,19 +19,19 @@ export function CenterCard({ title, children }) {
 }
 
 export function Label({ children, className = '' }) {
-  return <p className={`font-display text-xs font-semibold uppercase tracking-[0.2em] text-info ${className}`}>{children}</p>
+  return <p className={`font-display text-xs uppercase tracking-[0.2em] text-info ${className}`}>{children}</p>
 }
 
 const BUTTONS = {
-  primary: 'bg-accent text-on-accent hover:brightness-105 shadow-[0_4px_0_#d63f7c]',
-  mint: 'bg-info text-white hover:brightness-105 shadow-[0_4px_0_#16876c]',
+  primary: 'bg-accent text-on-accent hover:brightness-105 shadow-[0_4px_0_#a8481a]',
+  mint: 'bg-info text-white hover:brightness-105 shadow-[0_4px_0_#0f5c57]',
   outline: 'border-2 border-line bg-card text-ink hover:bg-hover',
 }
 
 export function Button({ variant = 'primary', className = '', ...props }) {
   return (
     <button
-      className={`rounded-2xl px-6 py-3 font-display text-lg font-semibold transition active:translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 ${BUTTONS[variant]} ${className}`}
+      className={`rounded-2xl px-6 py-3 font-display text-lg transition active:translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 ${BUTTONS[variant]} ${className}`}
       {...props}
     />
   )

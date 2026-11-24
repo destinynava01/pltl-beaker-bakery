@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 /*
-  The look: a sweet little bakery where the cupcakes come in beakers. Cream walls, strawberry frosting, mint
-  icing, chocolate text, and a gingham tablecloth. Every color the screens use is one of these tokens.
+  The look: a neighborhood bakery's kitchen. Flour-white walls and tiles, espresso-brown text, caramel and teal
+  like the shop's awning, and navy chef's check. Every color the screens use is one of these tokens.
 */
 @theme {
-  --color-board: #fff4ea;      /* cream */
-  --color-card: #ffffff;
-  --color-panel: #fff9f3;
-  --color-hover: #ffe8f0;
-  --color-line: #f3cfda;
-  --color-ink: #4a2c2a;        /* chocolate */
-  --color-muted: #8a6a66;
-  --color-accent: #ff5f9e;     /* strawberry frosting: titles, main buttons */
-  --color-accent-soft: #ffe3ef;
+  --color-board: #f4ede1;      /* flour */
+  --color-card: #fffdf8;
+  --color-panel: #faf5ec;
+  --color-hover: #f1e6d3;
+  --color-line: #e0d2bb;
+  --color-ink: #2f2419;        /* espresso */
+  --color-muted: #6f6253;
+  --color-accent: #d9652b;     /* caramel: titles, main buttons */
+  --color-accent-soft: #fbe6d6;
   --color-on-accent: #ffffff;
-  --color-info: #20b28f;       /* mint icing: labels, the line cook */
-  --color-info-soft: #dcf6ef;
-  --color-ok: #2a9d5c;         /* perfect */
-  --color-ok-soft: #e1f6e9;
-  --color-warn: #d98a00;       /* undercooked */
-  --color-warn-soft: #fff1d6;
-  --color-bad: #d4502f;        /* burnt */
-  --color-bad-soft: #fde6df;
+  --color-info: #17807a;       /* teal: labels, the line cook */
+  --color-info-soft: #dcefed;
+  --color-ok: #2e8b4e;         /* perfect */
+  --color-ok-soft: #e1f3e6;
+  --color-warn: #b97800;       /* undercooked */
+  --color-warn-soft: #fdf0d3;
+  --color-bad: #c2410c;        /* burnt */
+  --color-bad-soft: #fbe4da;
 
-  --font-display: "Fredoka", system-ui, sans-serif;
-  --font-body: "Nunito", system-ui, sans-serif;
+  --font-display: "Alfa Slab One", Georgia, serif;
+  --font-body: "Work Sans", system-ui, sans-serif;
 }
 
 body {
@@ -34,45 +34,42 @@ body {
   color: var(--color-ink);
 }
 
-/* The bakery wall: soft polka dots of sprinkles */
+/* The kitchen wall: big flour-white tiles */
 .bakery-bg {
   background-color: var(--color-board);
   background-image:
-    radial-gradient(circle at 20% 0%, rgb(255 95 158 / 0.12), transparent 40%),
-    radial-gradient(circle at 90% 100%, rgb(32 178 143 / 0.12), transparent 40%),
-    radial-gradient(rgb(255 95 158 / 0.16) 2px, transparent 2.5px),
-    radial-gradient(rgb(32 178 143 / 0.14) 2px, transparent 2.5px);
-  background-size: auto, auto, 34px 34px, 34px 34px;
-  background-position: 0 0, 0 0, 0 0, 17px 17px;
+    linear-gradient(rgb(47 36 25 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(47 36 25 / 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
-/* A strip of pink gingham (the tablecloth), across the top of cards */
+/* A strip of navy chef's check, across the top of cards */
 .gingham {
-  background-color: #fff;
+  background-color: #fffdf8;
   background-image:
-    linear-gradient(90deg, rgb(255 95 158 / 0.45) 50%, transparent 50%),
-    linear-gradient(rgb(255 95 158 / 0.45) 50%, transparent 50%);
-  background-size: 16px 16px;
+    linear-gradient(90deg, rgb(38 56 92 / 0.5) 50%, transparent 50%),
+    linear-gradient(rgb(38 56 92 / 0.5) 50%, transparent 50%);
+  background-size: 14px 14px;
 }
 
-/* Frosting drips along the bottom edge of a header */
+/* The shop awning under the kitchen header: teal and cream stripes with a scalloped edge */
 .frosting {
-  height: 18px;
-  background:
-    radial-gradient(circle at 12px -4px, var(--color-accent) 12px, transparent 13px) repeat-x;
-  background-size: 24px 18px;
+  height: 22px;
+  background: repeating-linear-gradient(90deg, var(--color-info) 0 28px, #fffdf8 28px 56px);
+  -webkit-mask: radial-gradient(circle at 14px 0, #000 14px, transparent 14.5px) 0 0 / 28px 100% repeat-x;
+  mask: radial-gradient(circle at 14px 0, #000 14px, transparent 14.5px) 0 0 / 28px 100% repeat-x;
 }
 
 /* An order ticket pinned to the rail */
 .ticket {
   background: #fffdf8;
-  border: 2px dashed #e7c9b5;
-  box-shadow: 0 6px 14px rgb(74 44 42 / 0.08);
+  border: 2px dashed #d9c3a3;
+  box-shadow: 0 6px 14px rgb(47 36 25 / 0.08);
 }
 
-.soft-shadow { box-shadow: 0 10px 24px rgb(74 44 42 / 0.10); }
+.soft-shadow { box-shadow: 0 10px 24px rgb(47 36 25 / 0.10); }
 
-/* A unit that cancels: struck through in mint */
+/* A unit that cancels: struck through in teal */
 .cancel { text-decoration: line-through; text-decoration-color: var(--color-info); text-decoration-thickness: 3px; opacity: 0.6; }
 
 @keyframes pop {

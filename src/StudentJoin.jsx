@@ -117,7 +117,7 @@ function Room({ saved, onLeave }) {
     body = (
       <section className="soft-shadow rounded-3xl border-2 border-line bg-card p-6 text-center">
         <p className="text-5xl">🎉</p>
-        <h2 className="mt-2 font-display text-3xl font-bold text-accent">Shift over!</h2>
+        <h2 className="mt-2 font-display text-3xl text-accent">Shift over!</h2>
         <p className="mt-2 text-lg">{myTeam?.name}: <b>{team?.points ?? 0}</b> points · #{team?.place} of {team?.teams}</p>
         <Stars n={team?.stars ?? 0} className="text-3xl" />
         <p className="mt-2 text-sm text-muted">{team?.perfect ?? 0} perfect · {team?.undercooked ?? 0} undercooked · {team?.burnt ?? 0} burnt</p>
@@ -148,12 +148,12 @@ function Room({ saved, onLeave }) {
       <div className="mx-auto max-w-md space-y-4 p-4">
         <header className="flex items-center justify-between gap-2">
           <div className="min-w-0">
-            <p className="truncate font-display text-lg font-semibold">{player.display_name}</p>
+            <p className="truncate font-display text-lg">{player.display_name}</p>
             {myTeam && <p className="text-sm text-muted"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ background: myTeam.color }} />{myTeam.name}</p>}
           </div>
           {team && view.game.status === 'playing' && (
             <p className="text-right">
-              <span className="font-display text-2xl font-bold text-accent">{team.points}</span> <span className="text-sm text-muted">pts</span>
+              <span className="font-display text-2xl text-accent">{team.points}</span> <span className="text-sm text-muted">pts</span>
               <span className="block text-xs text-muted">#{team.place} of {team.teams}</span>
             </p>
           )}
@@ -170,7 +170,7 @@ function Panel({ emoji, title, text }) {
   return (
     <section className="soft-shadow rounded-3xl border-2 border-line bg-card p-6 text-center">
       <p className="text-4xl">{emoji}</p>
-      <h2 className="mt-1 font-display text-2xl font-bold text-accent">{title}</h2>
+      <h2 className="mt-1 font-display text-2xl text-accent">{title}</h2>
       {text && <p className="mt-2 text-muted">{text}</p>}
     </section>
   )
@@ -182,8 +182,8 @@ function Ticket({ order, serverNow }) {
   return (
     <section className="ticket rounded-3xl p-4">
       <div className="flex items-start justify-between gap-2">
-        <p className="font-display text-xl font-semibold"><span className="mr-1 text-2xl">{order.emoji}</span>{order.title}</p>
-        <span className={`font-display text-lg font-bold tabular-nums ${left < 15 ? 'text-bad' : 'text-muted'}`}>{clock(left)}</span>
+        <p className="font-display text-xl"><span className="mr-1 text-2xl">{order.emoji}</span>{order.title}</p>
+        <span className={`font-display text-lg tabular-nums ${left < 15 ? 'text-bad' : 'text-muted'}`}>{clock(left)}</span>
       </div>
       <p className="mt-2 text-lg leading-snug">{order.ticket}</p>
       {order.hints.length > 0 && (
@@ -201,7 +201,7 @@ function LastDish({ last, fresh }) {
   const r = RESULTS[last.result]
   return (
     <section className={`rounded-3xl border-2 p-4 ${r.bg} ${fresh ? 'pop' : ''}`} key={last.at}>
-      <p className={`font-display text-xl font-bold ${r.color}`}>
+      <p className={`font-display text-xl ${r.color}`}>
         {r.emoji} {last.thrown_out ? 'Burnt: order thrown out' : r.label}
         {last.points > 0 && <span className="ml-2 text-base text-ink">+{last.points}</span>}
       </p>
@@ -251,7 +251,7 @@ function ChainBuilder({ order, playerId, onServed }) {
 
   return (
     <section className="soft-shadow rounded-3xl border-2 border-accent bg-card p-4">
-      <p className="text-center font-display text-2xl font-bold text-accent">👩‍🍳 You&apos;re the line cook!</p>
+      <p className="text-center font-display text-2xl text-accent">👩‍🍳 You&apos;re the line cook!</p>
       <p className="text-center text-sm text-muted">Write the conversion chain, then the amount. Units should cancel down to <b>{order.target_text}</b>.</p>
       <datalist id={listId}>{unitChoices(order.substances).map((u) => <option key={u} value={u} />)}</datalist>
 
@@ -296,7 +296,7 @@ function ChainBuilder({ order, playerId, onServed }) {
       <div className="mt-3 flex items-center gap-2">
         <span className="font-display text-2xl text-muted">=</span>
         <input className={`${input} py-3 text-xl`} placeholder="amount (sig figs count!)" aria-label="Final amount" value={answer} onChange={(e) => setAnswer(e.target.value)} autoComplete="off" />
-        <span className="shrink-0 font-display text-lg font-semibold">{order.target_text}</span>
+        <span className="shrink-0 font-display text-lg">{order.target_text}</span>
       </div>
       <p className="mt-1 text-xs text-muted">Big or tiny numbers: write 6.02 x 10^23 or 6.02e23.</p>
 
