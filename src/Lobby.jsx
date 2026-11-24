@@ -180,7 +180,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
                   <button key={n} type="button" aria-pressed={shift === n} onClick={() => setShift(n)} className={choice(shift === n)}>{n} min</button>
                 ))}
               </div>
-              <p className="mt-2 text-xs text-muted">Sig figs always count: the right amount with the wrong sig figs comes out undercooked.</p>
+              <p className="mt-2 text-xs text-muted">Each order has 5 minutes. Sig figs always count: the right amount with the wrong sig figs comes out undercooked. Every phone has a calculator.</p>
 
               {emptyTeams.length > 0 && (
                 <p className="mt-3 text-sm font-bold text-bad">Every team needs at least one student. Still empty: {emptyTeams.map(teamLabel).join(', ')}.</p>

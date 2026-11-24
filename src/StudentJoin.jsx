@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { bakePlay, watchGame } from './api'
+import Calculator from './Calculator'
 import { RESULTS } from './config'
 import { clock } from './time'
 import { Button, CenterCard, Gingham, Label, Stars } from './ui'
@@ -133,8 +134,11 @@ function Room({ saved, onLeave }) {
             {order.cook?.mine
               ? <ChainBuilder key={order.order_no} order={order} playerId={saved.playerId} onServed={check} />
               : (
-                <Panel emoji="🥄" title={`${order.cook?.name ?? 'Your teammate'} is the line cook`}
-                  text={`Help them out loud: which factor comes first? Do the units cancel?${order.cook?.next_name ? ` Next order: ${order.cook.next_name}.` : ''}`} />
+                <>
+                  <Panel emoji="🥄" title={`${order.cook?.name ?? 'Your teammate'} is the line cook`}
+                    text={`Help them out loud: which factor comes first? Do the units cancel? Check the math on the calculator.${order.cook?.next_name ? ` Next order: ${order.cook.next_name}.` : ''}`} />
+                  <Calculator />
+                </>
               )}
           </>
         ) : <Panel emoji="🔔" title="Next order coming up…" text="" />}
@@ -299,6 +303,7 @@ function ChainBuilder({ order, playerId, onServed }) {
         <span className="shrink-0 font-display text-lg">{order.target_text}</span>
       </div>
       <p className="mt-1 text-xs text-muted">Big or tiny numbers: write 6.02 x 10^23 or 6.02e23.</p>
+      <div className="mt-3"><Calculator onUse={setAnswer} /></div>
 
       <Button className="mt-4 w-full text-xl" disabled={busy || !filled} onClick={serve}>{busy ? 'Plating…' : '🔔 Serve it!'}</Button>
       {error && <p className="mt-2 text-center font-bold text-bad">{error}</p>}

@@ -9,8 +9,8 @@ export const MAX_TEAMS = 8
 export const TEAM_COLORS = ['#ff6fa3', '#3cc9a6', '#8b7cf6', '#ffb347', '#4aa8ff', '#f26b5b', '#a3c45a', '#c78bd6']
 
 // Shift length (minutes) and the menus (difficulty levels)
-export const SHIFT_CHOICES = [5, 10, 15, 20, 30]
-export const DEFAULT_SHIFT = 10
+export const SHIFT_CHOICES = [10, 15, 20, 30, 45]
+export const DEFAULT_SHIFT = 20
 export const MENUS = [
   { id: 'breakfast', label: 'Breakfast', emoji: '🥐', about: 'Metric prefixes: mg ↔ g ↔ kg, µL ↔ mL ↔ L' },
   { id: 'lunch', label: 'Lunch', emoji: '🍪', about: 'Grams ↔ moles ↔ molecules (molar mass, Avogadro)' },
