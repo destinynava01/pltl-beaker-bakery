@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import HowToPlay from './HowToPlay'
+import { SLIDES as HOW_TO_SLIDES } from './howToSlides'
 import { QRCodeSVG } from 'qrcode.react'
 import { bakeGame, watchGame } from './api'
 import { DEFAULT_SHIFT, HUB_URL, MAX_TEAMS, MENUS, MIN_TEAMS, SHIFT_CHOICES, SITE_NAME, TEAM_COLORS } from './config'
@@ -18,6 +20,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
   const [menus, setMenus] = useState(['breakfast', 'lunch'])
   const [shift, setShift] = useState(DEFAULT_SHIFT)
   const [busy, setBusy] = useState(false)
+  const [guide, setGuide] = useState(false) // the how-to guide, shown when Start is pressed (before the clock starts)
   const [error, setError] = useState('')
   const [players, setPlayers] = useState([])
 
@@ -72,6 +75,8 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
 
   return (
     <main className="bakery-bg min-h-dvh p-4 text-ink sm:p-8">
+      {/* Start shows the how-to guide first; the game (and its clock) starts when it closes */}
+      {guide && <HowToPlay site="bakery" gameId="lobby" name="Beaker Bakery" accent="#d9652b" slides={HOW_TO_SLIDES} open onClose={() => { setGuide(false); start() }} />}
       {hasGame && (
         <button onClick={onOpenKitchen} className="fixed right-4 top-4 z-20 rounded-2xl border-2 border-line bg-card px-4 py-2 font-bold hover:bg-hover">
           Back to the kitchen
@@ -185,7 +190,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
               {emptyTeams.length > 0 && (
                 <p className="mt-3 text-sm font-bold text-bad">Every team needs at least one student. Still empty: {emptyTeams.map(teamLabel).join(', ')}.</p>
               )}
-              <Button className="mt-4 w-full" disabled={busy || menus.length === 0 || emptyTeams.length > 0} onClick={start}>
+              <Button className="mt-4 w-full" disabled={busy || menus.length === 0 || emptyTeams.length > 0} onClick={() => (howToSkipped('bakery') ? start() : setGuide(true))}>
                 {busy ? 'Opening…' : '🔔 Open the kitchen'}
               </Button>
             </div>
@@ -256,4 +261,13 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
       <Gingham className="mx-auto mt-8 h-3 max-w-5xl rounded-full" />
     </main>
   )
+}
+
+// The leader turned the how-to guide off on this computer ("Don't show this again")
+function howToSkipped(site) {
+  try {
+    return Boolean(localStorage.getItem(`pltlHowToSkip:${site}`))
+  } catch {
+    return false
+  }
 }

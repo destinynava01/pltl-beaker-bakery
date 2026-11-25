@@ -69,7 +69,7 @@ export default function Kitchen({ session, onLobby, onNewGame }) {
   return (
     <main className="bakery-bg min-h-dvh text-ink">
       {/* The visual how-to guide: opens once per game, skippable */}
-      <HowToPlay site="bakery" gameId={session.gameId} name="Beaker Bakery" accent="#d9652b" slides={HOW_TO_SLIDES} />
+      <HowToPlay site="bakery" gameId={session.gameId} name="Beaker Bakery" accent="#d9652b" slides={HOW_TO_SLIDES} autoOpen={false} note="The shift clock keeps running while this is open." />
       <header className="bg-ink text-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <div>
