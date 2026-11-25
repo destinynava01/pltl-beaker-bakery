@@ -87,3 +87,22 @@ export const SLIDES = [
     ),
   },
 ]
+
+// The guide's own look (the bakery: a flour-white card with a teal frosting edge, Alfa Slab lettering in caramel). HowToPlay.jsx reads this; anything left out uses its plain dark look.
+export const SKIN = {
+  backdrop: 'bg-[#2f2419]/70',
+  panel: 'rounded-3xl border-2 border-line bg-card text-ink shadow-2xl before:block before:h-[22px] before:content-[\'\'] before:[background:repeating-linear-gradient(90deg,#17807a_0_28px,#fffdf8_28px_56px)] before:[mask:radial-gradient(circle_at_14px_0,#000_14px,transparent_14.5px)_0_0/28px_100%_repeat-x]',
+  glow: false,
+  label: 'text-sm font-extrabold uppercase tracking-[0.25em] text-info',
+  skip: 'rounded-full border-2 border-line bg-white px-3 py-1 text-sm font-bold text-muted hover:bg-hover',
+  art: 'bakery-bg rounded-2xl border-2 border-dashed border-line',
+  step: 'text-sm font-bold uppercase tracking-widest text-muted',
+  title: 'font-display text-3xl leading-tight text-accent sm:text-4xl',
+  text: 'text-lg leading-relaxed text-ink',
+  footer: 'border-t-2 border-line bg-panel',
+  check: 'text-sm text-muted',
+  back: 'rounded-xl border-2 border-line bg-white px-4 py-2 font-bold text-ink hover:bg-hover',
+  next: 'rounded-xl bg-accent px-5 py-2 font-display text-on-accent shadow-[0_4px_0_#a94a1c] hover:brightness-110',
+  dotOff: '#e0d2bb',
+  launcher: 'rounded-full border-2 border-line bg-card px-4 py-2 text-sm font-extrabold text-accent shadow-lg hover:bg-hover',
+}
