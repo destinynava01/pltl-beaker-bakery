@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import HowToPlay from './HowToPlay'
+import { SLIDES as HOW_TO_SLIDES } from './howToSlides'
 import { bakeGame, watchGame } from './api'
 import EndShift from './EndShift'
 import { MENUS, RESULTS, SITE_NAME } from './config'
@@ -66,6 +68,8 @@ export default function Kitchen({ session, onLobby, onNewGame }) {
 
   return (
     <main className="bakery-bg min-h-dvh text-ink">
+      {/* The visual how-to guide: opens once per game, skippable */}
+      <HowToPlay site="bakery" gameId={session.gameId} name="Beaker Bakery" accent="#d9652b" slides={HOW_TO_SLIDES} />
       <header className="bg-ink text-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <div>
