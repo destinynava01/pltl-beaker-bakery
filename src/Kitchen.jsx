@@ -73,13 +73,13 @@ export default function Kitchen({ session, onLobby, onNewGame }) {
       <header className="bg-ink text-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <div>
-            <p className="font-display text-xs uppercase tracking-[0.3em] opacity-90">{SITE_NAME} · join code {session.joinCode}</p>
+            <p className="font-display text-sm uppercase tracking-[0.3em] opacity-90">{SITE_NAME} · join code {session.joinCode}</p>
             <h1 className="font-display text-3xl text-[#f3b27a]">🧁 Kitchen&apos;s open! <span className="text-lg font-semibold opacity-90">{menus.map((m) => `${m.emoji} ${m.label}`).join(' · ')}</span></h1>
           </div>
           <div className="flex items-center gap-3">
             {shiftLeft !== null && (
               <div className={`rounded-2xl bg-white px-4 py-1 text-center text-ink ${shiftLeft <= 30 ? 'wobble' : ''}`} key={shiftLeft <= 30 ? Math.ceil(shiftLeft) : 'shift'}>
-                <p className="font-display text-[10px] uppercase tracking-widest text-muted">Shift ends in</p>
+                <p className="font-display text-sm uppercase tracking-widest text-muted">Shift ends in</p>
                 <p className={`font-display text-3xl tabular-nums ${shiftLeft <= 60 ? 'text-bad' : ''}`}>{clock(shiftLeft)}</p>
               </div>
             )}
@@ -111,7 +111,7 @@ function Counter({ team, serverNow, busy, onPass }) {
       <div className="flex items-center justify-between gap-2 px-4 py-3" style={{ background: `${team.color}22`, borderBottom: `4px solid ${team.color}` }}>
         <div className="min-w-0">
           <h2 className="truncate font-display text-2xl">{team.name}</h2>
-          <p className="truncate text-xs text-muted">{team.members.join(', ')}</p>
+          <p className="truncate text-sm text-muted">{team.members.join(', ')}</p>
         </div>
         <div className="text-right">
           <p className="font-display text-3xl text-accent">{team.score.points}</p>
@@ -124,7 +124,7 @@ function Counter({ team, serverNow, busy, onPass }) {
           <div className="ticket rounded-2xl p-4">
             <div className="flex items-start justify-between gap-2">
               <p className="font-display text-xl"><span className="mr-1 text-2xl">{o.emoji}</span>{o.title}</p>
-              <span className="rounded-full bg-accent-soft px-2 py-0.5 font-display text-xs uppercase text-accent">#{o.order_no} · {o.level}</span>
+              <span className="rounded-full bg-accent-soft px-2 py-0.5 font-display text-sm uppercase text-accent">#{o.order_no} · {o.level}</span>
             </div>
             <p className="mt-2 leading-snug">{o.ticket}</p>
             {o.hints.length > 0 && <p className="mt-2 text-sm text-muted">📝 {o.hints.join(' · ')}</p>}
@@ -135,7 +135,7 @@ function Counter({ team, serverNow, busy, onPass }) {
               <span>👩‍🍳 <b>{o.cook ?? 'No cook'}</b> is cooking{o.tries > 0 ? ` · ${3 - o.tries} tr${3 - o.tries === 1 ? 'y' : 'ies'} left` : ''}</span>
               <span className={`font-display tabular-nums ${left < 15 ? 'text-bad' : 'text-muted'}`}>{clock(left)}</span>
             </div>
-            <button type="button" disabled={busy} onClick={onPass} className="mt-1 text-xs font-bold text-info hover:underline">Cook not here? Pass the whisk →</button>
+            <button type="button" disabled={busy} onClick={onPass} className="mt-1 text-sm font-bold text-info hover:underline">Cook not here? Pass the whisk →</button>
           </div>
         ) : (
           <p className="text-center text-muted">Waiting for the next order…</p>
@@ -145,7 +145,7 @@ function Counter({ team, serverNow, busy, onPass }) {
           <div className={`mt-3 rounded-2xl border-2 px-3 py-2 text-sm ${RESULTS[last.result].bg} ${fresh ? 'pop' : ''}`} key={last.created_at}>
             <b className={RESULTS[last.result].color}>{RESULTS[last.result].emoji} {RESULTS[last.result].label}</b>
             <span className="text-muted"> · {last.cook}</span>
-            <p className="mt-0.5 text-xs">{last.reason}</p>
+            <p className="mt-0.5 text-sm">{last.reason}</p>
           </div>
         )}
 
