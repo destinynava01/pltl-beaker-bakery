@@ -24,3 +24,7 @@ export const RESULTS = {
   burnt: { emoji: '🔥', label: 'Burnt', color: 'text-bad', bg: 'bg-bad-soft border-bad' },
   expired: { emoji: '⌛', label: 'Walked out', color: 'text-muted', bg: 'bg-panel border-line' },
 }
+
+// Leader scenarios (the /scenarios and /review pages): this game's id, and the pages' background
+export const SCENARIO_GAME = 'bakery'
+export const PAGE_BG = 'bg-board'
