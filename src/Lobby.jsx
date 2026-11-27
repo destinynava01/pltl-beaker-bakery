@@ -117,6 +117,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
                 <QRCodeSVG value={joinUrl} size={200} title={`Join code ${session.joinCode}`} />
               </div>
               <p className="mt-3 text-center text-sm text-muted">Students scan this with their phone camera to join.</p>
+              <p className="mt-3 rounded-lg border-2 border-dashed border-warn bg-warn-soft px-3 py-2 text-center text-sm font-bold text-warn">📝 Tell students to grab scratch paper for the conversion chains and sig-fig math.</p>
             </div>
           )}
           <div className="mt-6 rounded-2xl border-2 border-dashed border-line p-4 text-sm text-muted">
