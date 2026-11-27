@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { RESULTS } from './config'
 import { Button, Label } from './ui'
+import ReportProblem from './ReportProblem'
 
 // The leader's peek at one team: the order it's cooking (as its phones show it), the line cook, and every dish
 // served on this order, with the conversion chain the cook wrote and why it burnt or came out undercooked. The model
@@ -87,6 +88,8 @@ export default function Peek({ call, team, stamp, onClose }) {
                 {o.solution.length > 0 && <ol className="mt-1 list-decimal pl-5 font-mono text-xs">{o.solution.map((s, i) => <li key={i}>{s}</li>)}</ol>}
               </div>
             )}
+            <ReportProblem call={call} location={`${team.name} · Order #${o.order_no}: ${o.title ?? ''}`} question={o.ticket ?? ''}
+              answer={[o.answer, ...(o.solution ?? [])].join('\n')} className="mt-3 block" />
           </>
         )}
       </section>

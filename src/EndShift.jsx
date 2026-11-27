@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { bakeGame } from './api'
 import { RESULTS } from './config'
 import { Button, Gingham, Stars } from './ui'
+import ReportProblem from './ReportProblem'
 
 // End of the shift: teams ranked by points (with stars), every order each team got (what they served, and the
 // right way to do it), and the results download.
 export default function EndShift({ session, onNewGame, onLobby }) {
+  const reportCall = (payload) => bakeGame({ ...payload, game_id: session.gameId, host_token: session.hostToken })
   const [report, setReport] = useState(null)
   const [error, setError] = useState('')
   const [open, setOpen] = useState(null) // the team whose orders are showing
@@ -58,7 +60,7 @@ export default function EndShift({ session, onNewGame, onLobby }) {
                   </div>
                   <p className="mt-1 text-xs font-bold text-info">{open === t.index ? 'Hide orders ▲' : 'See every order ▼'}</p>
                 </button>
-                {open === t.index && <Orders team={t} />}
+                {open === t.index && <Orders team={t} reportCall={reportCall} />}
               </li>
             ))}
           </ol>
@@ -76,7 +78,7 @@ export default function EndShift({ session, onNewGame, onLobby }) {
   )
 }
 
-function Orders({ team }) {
+function Orders({ team, reportCall }) {
   if (team.orders.length === 0) return <p className="mt-2 text-center text-sm text-muted">No orders.</p>
   return (
     <ul className="mt-2 space-y-2">
@@ -100,6 +102,8 @@ function Orders({ team }) {
                 {o.solution.map((s) => <p key={s} className="font-mono">{s}</p>)}
               </div>
             )}
+            <ReportProblem call={reportCall} location={`${team.name} · Order #${o.order_no}: ${o.title} (${o.level})`} question={o.ticket}
+              answer={[o.answer, ...o.solution].join('\n')} className="mt-2" />
           </li>
         )
       })}
