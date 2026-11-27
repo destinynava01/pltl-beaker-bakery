@@ -3,6 +3,7 @@ import HowToPlay from './HowToPlay'
 import { SLIDES as HOW_TO_SLIDES } from './howToSlides'
 import { bakeGame, watchGame } from './api'
 import EndShift from './EndShift'
+import Peek from './Peek'
 import { MENUS, RESULTS, SITE_NAME } from './config'
 import { clock } from './time'
 import { Button, Gingham, Stars } from './ui'
@@ -14,6 +15,7 @@ export default function Kitchen({ session, onLobby, onNewGame }) {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
   const [now, setNow] = useState(() => Date.now())
+  const [peek, setPeek] = useState(null) // the team the leader is peeking at
   const endedOnce = useRef(false)
 
   const call = useCallback((payload) => bakeGame({ ...payload, game_id: session.gameId, host_token: session.hostToken }), [session])
@@ -93,14 +95,15 @@ export default function Kitchen({ session, onLobby, onNewGame }) {
       {error && <p className="mx-auto mt-3 max-w-7xl px-6 font-bold text-bad">{error}</p>}
 
       <section className="mx-auto grid max-w-7xl gap-5 p-4 sm:p-6 md:grid-cols-2 xl:grid-cols-3">
-        {kitchen.teams.map((t) => <Counter key={t.index} team={t} serverNow={serverNow} busy={busy} onPass={() => act({ action: 'pass_cook', team_index: t.index })} />)}
+        {kitchen.teams.map((t) => <Counter key={t.index} team={t} serverNow={serverNow} busy={busy} onPass={() => act({ action: 'pass_cook', team_index: t.index })} onPeek={() => setPeek({ index: t.index, name: t.name })} />)}
       </section>
+      {peek && playing && <Peek call={call} team={peek} stamp={kitchen} onClose={() => setPeek(null)} />}
     </main>
   )
 }
 
 // One team's counter
-function Counter({ team, serverNow, busy, onPass }) {
+function Counter({ team, serverNow, busy, onPass, onPeek }) {
   const o = team.order
   const total = o ? (Date.parse(o.due_at) - Date.parse(o.started_at)) / 1000 : 0
   const left = o ? Math.max(0, (Date.parse(o.due_at) - serverNow) / 1000) : 0
@@ -135,7 +138,10 @@ function Counter({ team, serverNow, busy, onPass }) {
               <span>👩‍🍳 <b>{o.cook ?? 'No cook'}</b> is cooking{o.tries > 0 ? ` · ${3 - o.tries} tr${3 - o.tries === 1 ? 'y' : 'ies'} left` : ''}</span>
               <span className={`font-display tabular-nums ${left < 15 ? 'text-bad' : 'text-muted'}`}>{clock(left)}</span>
             </div>
-            <button type="button" disabled={busy} onClick={onPass} className="mt-1 text-sm font-bold text-info hover:underline">Cook not here? Pass the whisk →</button>
+            <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
+              <button type="button" disabled={busy} onClick={onPass} className="text-sm font-bold text-info hover:underline">Cook not here? Pass the whisk →</button>
+              <button type="button" onClick={onPeek} className="rounded-xl border-2 border-line bg-card px-2 py-0.5 text-sm font-bold text-accent hover:bg-hover" aria-label={`Peek at ${team.name}`}>👀 Peek</button>
+            </div>
           </div>
         ) : (
           <p className="text-center text-muted">Waiting for the next order…</p>
