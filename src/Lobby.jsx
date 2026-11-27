@@ -89,7 +89,7 @@ export default function Lobby({ onStart, onOpenKitchen, hasGame, resume, onClose
         <p className="font-display text-sm uppercase tracking-[0.3em] text-info">{SITE_NAME}</p>
         <h1 className="mt-1 font-display text-5xl text-accent">🧁 Leader Lobby</h1>
         <p className="mt-2 text-muted">Set up your teams, pick the menus, then open the kitchen.</p>
-        <p className="mt-2 text-sm font-bold"><a href={HUB_URL} className="text-info hover:brightness-110">← All games</a></p>
+        <p className="mt-2 text-sm font-bold"><a href={HUB_URL} className="text-info hover:brightness-110">← All games</a><span className="mx-2 opacity-50">·</span><a href="/scenarios" className="text-info hover:brightness-110">Submit scenarios</a><span className="mx-2 opacity-50">·</span><a href="/review" className="text-info hover:brightness-110">Review queue</a></p>
         <div className="mt-6">
           {session ? (
             <div className="flex flex-col items-center gap-3">
