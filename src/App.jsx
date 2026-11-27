@@ -8,6 +8,7 @@ import { readSession, saveSession } from './session'
 import { isConfigured } from './supabase'
 import { Button, CenterCard } from './ui'
 import ScenarioSubmit, { ScenarioReviewPage } from './Scenarios'
+import { SLIDES as LANDING_SLIDES } from './howToSlides'
 
 // Routes:
 //   /       leader: landing -> lobby -> kitchen (the projector)
@@ -77,6 +78,7 @@ function LeaderApp() {
       <CenterCard title={SITE_NAME}>
         <p className="mt-2 text-5xl"><span className="bob">🧁</span></p>
         <p className="mt-2 font-display text-xl text-info">{SITE_TAGLINE}</p>
+        <div className="mt-6 flex justify-center text-left [&>*]:max-w-full">{LANDING_SLIDES[0].art}</div>
         <p className="mt-3 text-muted">
           Orders come into the kitchen as chemistry conversions. Write the conversion chain, get the units to cancel, and
           serve the right amount (sig figs count!) before the customer walks out.
